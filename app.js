@@ -9,7 +9,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-mongoose.connect('mongodb://localhost:27017/blogDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://admin_mehul:mehulsvps@cluster0.7gsgn.mongodb.net/blogDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -99,7 +99,12 @@ app.get("/posts/:postId", function(req, res){
   });
 
 });
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("Server started on port 3000");
 });
+
